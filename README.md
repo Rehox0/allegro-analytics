@@ -18,8 +18,8 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## Live / Demo
-* **90s: [▶link]**
-* **5-min deep-dive: [▶link]**
+* **`90s: [▶link]`**
+* **`5-min deep-dive: [▶link]`**
 
 ---
 
@@ -61,7 +61,7 @@ The most challenging part was designing a reliable data ingestion flow using pol
 **CI/CD Flow:**
 `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `AWS ECS` ➔ `CloudFront Invalidation`
 
-**Container Entrypoint**
+**Container Entrypoint:**
 `Wait for DB` ➔ `Migrations` ➔ `Seeds` ➔ `App Ready`
 
 **Includes:**
@@ -88,9 +88,9 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## Design Evolution
-The project was developed iteratively, starting from a local environment and gradually migrating to AWS.
+The project was developed iteratively, starting from a local environment and gradually migrating to `AWS`.
 
-The project evolved from local Docker-Compose to Render, eventually migrating to AWS. Initial EC2 deployments were refactored into a high-availability Fargate Multi-AZ architecture. This transition addressed real-world trade-offs between management overhead, cost optimization, and infrastructure resilience using Terraform.
+The project evolved from local Docker-Compose to `Render`, eventually migrating to `AWS`. Initial EC2 deployments were refactored into a high-availability Fargate Multi-AZ architecture. This transition addressed real-world trade-offs between management overhead, cost optimization, and infrastructure resilience using Terraform.
 
 ---
 
