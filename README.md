@@ -58,25 +58,13 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## CI/CD
-**GitHub Actions pipeline:**
+**CI/CD Flow:**
+`GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `AWS ECS` ➔ `CloudFront Invalidation`
 
-```mermaid
-graph TD
-    P[Push to Branch] --> B[Build Docker Image]
-    B --> ECR[Push to Amazon ECR]
-    ECR --> ECS[Update ECS Service]
-    ECS --> CF[Invalidate Frontend Cache]
+**Container Entrypoint**
+`Wait for DB` ➔ `Migrations` ➔ `Seeds` ➔ `App Ready`
 
-    subgraph "Container Entrypoint"
-    W[Wait for DB] --> M[Migrations]
-    M --> S[Seeds]
-    S --> START[App Ready]
-    end
-
-    ECS -.-> W
-```
-
-Includes:
+**Includes:**
 * Image versioning
 * Automated deployments
 
