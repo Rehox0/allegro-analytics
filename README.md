@@ -17,9 +17,23 @@ The most challenging part was designing a reliable data ingestion flow using pol
 
 ---
 
+## Live / Demo
+90s: [▶link]
+5-min deep-dive: [▶link]
+
+---
+
 ## Architecture & UI
 ![Architecture](./images/AWS_DIAGRAM2.png)
-![UI](./images/ss-app.png)
+- [UI](./images/ss-app.png)
+
+---
+
+## Tech Stack
+* **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache.
+* **DevOps:** Terraform, Docker, GitHub Actions, Git.
+* **Backend:** Python (Django DRF), Celery, Redis, OAuth2 (PKCE).
+* **Frontend:** React, Nginx, JavaScript
 
 ---
 
@@ -29,19 +43,6 @@ The most challenging part was designing a reliable data ingestion flow using pol
 - [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - Dynamic secret management
 - [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption - model layer
 - [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Fernet encryption - service layer
----
-
-## Live / Demo
-90s: [▶link]
-5-min deep-dive: [▶link]
-
----
-
-## Tech Stack
-* **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache.
-* **DevOps:** Terraform, Docker, GitHub Actions, Git.
-* **Backend:** Python (Django DRF), Celery, Redis, OAuth2 (PKCE).
-* **Frontend:** React, Nginx, JavaScript
 
 ---
 
