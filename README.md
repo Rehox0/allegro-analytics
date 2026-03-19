@@ -18,7 +18,7 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## Architecture & UI
-![Architecture](./images/AWS_DIAGRAM.png)
+![Architecture](./images/AWS_DIAGRAM2.png)
 ![UI](./images/ss-app.png)
 
 ---
