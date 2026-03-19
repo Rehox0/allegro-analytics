@@ -24,11 +24,11 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## Code Highlights
-[entrypoint.sh](./Backend/entrypoint.sh) - Automated AWS migrations & startup
-[setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent seeding with Secrets Manager
-[Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - Dynamic secret management
-[OAuth2/models.py](./Backend/allegro_app/oauth2/models.py) - Fernet encryption - model layer
-[OAuth2/services.py](./Backend/allegro_app/oauth2/services.py) - Fernet encryption - service layer
+- [entrypoint.sh](./Backend/entrypoint.sh) - Automated AWS migrations & startup
+- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent seeding with Secrets Manager
+- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - Dynamic secret management
+- [OAuth2/models.py](./Backend/allegro_app/oauth2/models.py) - Fernet encryption - model layer
+- [OAuth2/services.py](./Backend/allegro_app/oauth2/services.py) - Fernet encryption - service layer
 ---
 
 ## Live / Demo
@@ -56,7 +56,7 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## CI/CD
-GitHub Actions pipeline:
+**GitHub Actions pipeline:**
 
 ```mermaid
 graph TD
