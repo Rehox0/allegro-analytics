@@ -23,18 +23,18 @@ The most challenging part was designing a reliable data ingestion flow using pol
 
 ---
 
-## Architecture & UI
-![Architecture](./images/AWS_DIAGRAM2.png)
-
-![UI](./images/ss-app.png)
-
----
-
 ## Tech Stack
 * **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache.
 * **DevOps:** Terraform, Docker, GitHub Actions, Git.
 * **Backend:** Python (Django DRF), Celery, Redis, OAuth2 (PKCE).
 * **Frontend:** React, Nginx, JavaScript
+
+---
+
+## Architecture & UI
+![Architecture](./images/AWS_DIAGRAM2.png)
+
+![UI](./images/ss-app.png)
 
 ---
 
