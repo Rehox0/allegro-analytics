@@ -1,10 +1,10 @@
 # Allegro Profit & Margin Analytics – Cloud-Native Portfolio Project
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws)
-![Terraform 1.14.7](https://img.shields.io/badge/Terraform-7B42BC?logo=terraform)
-![Docker 28.2.2](https://img.shields.io/badge/Docker-2496ED?logo=docker)
+![Terraform Version](https://img.shields.io/badge/Terraform-1.14.77B42BC?logo=terraform)
+![Docker Version](https://img.shields.io/badge/Docker-28.2.2-2496ED?logo=docker)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
-![Python 3.12](https://img.shields.io/badge/Python-3776AB?logo=python)
+![Python Version](https://img.shields.io/badge/Python-3.12-3776AB?logo=python)
 ![Valkey](https://img.shields.io/badge/Valkey-5FBB97?logo=valkey&logoColor=white)
 
 ## Overview
