@@ -45,9 +45,6 @@ then check Code Highlights below.
 ## Local Development
 > Repository is private. Demo available in the video above.
 
-Core stack: Django + Celery workers + Redis (local), PostgreSQL + React.  
-Production environment runs on AWS - see Architecture section.
-
 ---
 
 ## Code Highlights
