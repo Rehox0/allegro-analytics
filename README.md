@@ -48,6 +48,11 @@ Then check Code Highlights below.
 
 ---
 
+## Local Development
+> Repository is private. Demo available in the video above.
+
+---
+
 ## CI/CD
 
 **Frontend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
@@ -56,11 +61,6 @@ Then check Code Highlights below.
 
 **Container Entrypoint:**
 `Wait for DB` ➔ `Migrations` ➔ `Seeding data` ➔ `App Ready`
-
----
-
-## Local Development
-> Repository is private. Demo available in the video above.
 
 ---
 
