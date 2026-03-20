@@ -46,8 +46,26 @@ then check Code Highlights below.
 
 ## Code Highlights
 - [entrypoint.sh](./Backend/entrypoint.sh) - Ensures DB is ready, and then runs migrations
+```sh
+while ! python -c "socket check..."; do
+    echo "Database is not ready..."; sleep 4
+done
 - [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
+
 - [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
+```sh
+        if not client_id or not client_secret:
+            logger.error('No creds in json!')
+            return
+
+        obj, created = AllegroCredentials.objects.get_or_create(id=1)
+
+        obj.client_id = client_id
+        obj.set_client_secret(client_secret)
+        obj.redirect_uri = redirect_uri
+        obj.is_sandbox = is_sandbox_env
+        obj.save()
+done
 - [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption at the model level, not the application level
 - [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Validation before use - fail fast instead of a silent error
 
