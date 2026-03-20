@@ -46,14 +46,14 @@ then check Code Highlights below.
 
 ## Code Highlights
 - [entrypoint.sh](./Backend/entrypoint.sh) - Ensures DB is ready, and then runs migrations
-```sh
+````bash
 while ! python -c "socket check..."; do
     echo "Database is not ready..."; sleep 4
 done
-```
+````
 
 - [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
-```sh
+``````python
         if not client_id or not client_secret:
             logger.error('No creds in json!')
             return
@@ -65,10 +65,10 @@ done
         obj.redirect_uri = redirect_uri
         obj.is_sandbox = is_sandbox_env
         obj.save()
-```
+``````
 
 - [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
-```sh
+`````terraform
 resource "aws_secretsmanager_secret_version" "terraform_generated" {
   secret_id     = aws_secretsmanager_secret.terraform_generated.id
   secret_string = jsonencode(merge(
@@ -77,10 +77,31 @@ resource "aws_secretsmanager_secret_version" "terraform_generated" {
       # RDS credentials
       db_username = var.db_username
       db_password = random_password.db_password.result
-```
+`````
 
 - [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption at the model level, not the application level
+``````python
+class AllegroCredentials(models.Model):
+     encrypted_client_secret = models.CharField(max_length=512)
+
+    def set_client_secret(self, secret: str) -> None:
+        """Encrypt and store the client secret."""
+        self.encrypted_client_secret = settings.PRIMARY_FERNET.encrypt(secret.encode()).decode()
+
+    def get_client_secret(self) -> str:
+        """Decrypt and return the client secret."""
+        return settings.FERNET.decrypt(self.encrypted_client_secret.encode()).decode()
+``````
+
 - [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Validation before use - fail fast instead of a silent error
+``````python
+    @staticmethod
+    def require_client_secret(creds: AllegroCredentials) -> str:
+        secret = creds.get_client_secret().strip()
+        if not secret:
+            raise ValueError("Allegro client_secret is missing")
+        return secret
+``````
 
 ---
 
