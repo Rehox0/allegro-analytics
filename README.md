@@ -1,4 +1,5 @@
 # Allegro Profit & Margin Analytics – Cloud-Native Portfolio Project
+*Portfolio project demonstrating cloud-native development on AWS.*
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws)
 ![Terraform Version](https://img.shields.io/badge/Terraform-v1.14.7-7B42BC?logo=terraform)
@@ -15,7 +16,6 @@ Built with a business partner (accountant & Allegro seller) to track real per-or
 
 Integrates with Allegro API via OAuth2+PKCE, ingests order data asynchronously using Celery polling (webhook emulation), and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
 
-*Portfolio project demonstrating cloud-native development on AWS.*
 
 ---
 
