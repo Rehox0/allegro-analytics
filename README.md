@@ -41,6 +41,7 @@ then check Code Highlights below.
 ![Architecture](./images/AWS_DIAGRAM.png)
 
 - **Infrastructure as Code using Terraform (~68 resources)** - networking, compute, database, security, scaling, and observability.
+- **Remote state** stored in S3 with AES-256 encryption; single `terraform.tfstate` scoped to `eu-north-1`.
 - **Target Tracking Scaling** for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
 - **Security Groups** enforce strict inbound/outbound rules between layers (`CloudFront` via `VPC Origin` → `ALB` → `ECS` → `RDS/ElastiCache`).
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access; outbound internet access for ECS routed via **NAT Gateway**
@@ -158,6 +159,7 @@ Initial infrastructure was provisioned manually via AWS Console - after ~20 hour
 * Add distributed tracing (X-Ray)
 * Add unit tests - priority: margin calculation logic and Fernet encryption paths
 * Implement blue/green deployments
+* Add DynamoDB state locking - currently no concurrent write protection on the S3 backend.
 
 ---
 
