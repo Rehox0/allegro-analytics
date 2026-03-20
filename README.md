@@ -40,11 +40,10 @@ then check Code Highlights below.
 ## Architecture
 ![Architecture](./images/AWS_DIAGRAM.png)
 
-**CloudFront** is the sole entry point - ALB and ECS tasks have no public access.  
-**Multi-AZ** deployment across two private subnets with ElastiCache replica and RDS Standby.
-**Target Tracking Scaling for Frontend**, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
-
-**Infrastructure as Code using Terraform (~68 resources)** divided into modules: Networking, Compute, Scaling, Security and Observability
+- **CloudFront** is the sole entry point - ALB and ECS tasks have no public access.
+- **Multi-AZ** deployment across two private subnets with ElastiCache replica and RDS Standby.
+- **Target Tracking Scaling** for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
+- **Infrastructure as Code using Terraform (~68 resources)** divided into modules: Networking, Compute, Scaling, Security and Observability
 
 ---
 
