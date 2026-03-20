@@ -38,10 +38,11 @@ then check Code Highlights below.
 ---
 
 ## Architecture
-![Architecture](./images/AWS_DIAGRAM2.png)
+![Architecture](./images/AWS_DIAGRAM.png)
 
-CloudFront is the sole entry point — ALB and ECS tasks have no public access.  
+CloudFront is the sole entry point - ALB and ECS tasks have no public access.  
 Multi-AZ deployment across two private subnets with ElastiCache replica and RDS Standby.
+Target Tracking Scaling for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
 
 ---
 
@@ -65,6 +66,7 @@ resource "aws_secretsmanager_secret_version" "terraform_generated" {
 
 - [entrypoint.sh](./Backend/entrypoint.sh) - DB readiness check without netcat or postgresql-client
 ```bash
+# Simplified
 while ! python -c "
     aws_secrets = json.loads(os.environ.get('secrets_json', '{}'))
     s.connect((aws_secrets.get('db_host'), aws_secrets.get('db_port', 5432)))
@@ -75,6 +77,7 @@ done
 
 - [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
 ``````python
+# Simplified
 # Safe to run on every container startup — create or update, never duplicate
 @transaction.atomic
 def handle(self, *args, **options):
@@ -106,7 +109,7 @@ class AllegroCredentials(models.Model):
     def require_client_secret(creds: AllegroCredentials) -> str:
         secret = creds.get_client_secret().strip()
         if not secret:
-            raise ValueError("Allegro client_secret is missing")
+            raise ValueError("Allegro client_secret is missing. Update Allegro credentials in Django Admin.")
         return secret
 ``````
 
@@ -130,7 +133,7 @@ class AllegroCredentials(models.Model):
 **Backend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)`
 
 **Container Entrypoint:**
-`Wait for DB` ➔ `Migrations` ➔ `Seeds` ➔ `App Ready`
+`Wait for DB` ➔ `Migrations` ➔ `Seeding data` ➔ `App Ready`
 
 ---
 
@@ -161,11 +164,11 @@ This transition addressed real-world trade-offs between management overhead, cos
 ---
 
 ## Possible Improvements
-* Add SQS for async processing
-* Add unit tests
-* Add Run Migrations Task in CI/CD to avoid a potential race condition
+* Add SQS for async processing — currently using a custom database-backed queue (PostgreSQL) with idempotent enqueue, worker locking, retry backoff, and dead-letter semantics. SQS would offload queue pressure from the database and provide managed delivery guarantees at scale.
 * Add WAF for edge protection
+* Add Run Migrations Task in CI/CD — current setup has a potential race condition when multiple tasks start simultaneously before migrations complete
 * Add distributed tracing (X-Ray)
+* Add unit tests - priority: margin calculation logic and Fernet encryption paths
 * Implement blue/green deployments
 
 ---
