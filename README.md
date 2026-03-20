@@ -37,10 +37,8 @@ then check Code Highlights below.
 
 ---
 
-## Architecture & UI
+## Architecture
 ![Architecture](./images/AWS_DIAGRAM2.png)
-
-![UI](./images/ss-app.png)
 
 ---
 
