@@ -51,9 +51,8 @@ while ! python -c "socket check..."; do
     echo "Database is not ready..."; sleep 4
 done
 ```
-- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
 
-- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
+- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
 ```sh
         if not client_id or not client_secret:
             logger.error('No creds in json!')
@@ -66,8 +65,20 @@ done
         obj.redirect_uri = redirect_uri
         obj.is_sandbox = is_sandbox_env
         obj.save()
-done
 ```
+
+- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
+```sh
+resource "aws_secretsmanager_secret_version" "terraform_generated" {
+  secret_id     = aws_secretsmanager_secret.terraform_generated.id
+  secret_string = jsonencode(merge(
+    jsondecode(data.aws_secretsmanager_secret_version.manual.secret_string),
+    {
+      # RDS credentials
+      db_username = var.db_username
+      db_password = random_password.db_password.result
+```
+
 - [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption at the model level, not the application level
 - [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Validation before use - fail fast instead of a silent error
 
