@@ -15,7 +15,7 @@
 ## Overview
 Built with a business partner (accountant & Allegro seller) to track real per-order profit margins - including hidden operational costs(shipping returns, Allegro commissions, VAT adjustments) that Allegro's dashboard doesn't show.
 
-Integrates with Allegro API via OAuth2+PKCE, ingests order data asynchronously using Celery polling (webhook emulation), and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
+Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using Celery polling (webhook emulation), and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
 
 ---
 
@@ -25,7 +25,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests order data asynchronously u
   flow, UI, polling, CI/CD pipeline with cache invalidation
 
 **Recommended:** Start with the 90s video, 
-then check Code Highlights below.
+Then check Code Highlights below.
 
 ---
 
@@ -149,9 +149,9 @@ class AllegroCredentials(models.Model):
 ---
 
 ## Design Evolution
-The project was developed iteratively. Evolved from local Docker-Compose to **Render**, eventually migrating to **AWS**. 
-Initial EC2 deployments were refactored into a high-availability Fargate Multi-AZ architecture. 
-This transition addressed real-world trade-offs between management overhead, cost optimization, and infrastructure resilience using Terraform.
+Started as a learning project built for a business partner. Developed and iterated on **Render** for 3-4 months, then migrated to **AWS** after completing AWS certifications (CCP, DVA).
+
+Initial infrastructure was provisioned manually via AWS Console - after ~20 hours, complexity and configuration drift made it unmanageable. Rebuilt from scratch; the second iteration worked but remained hard to reproduce. This drove the migration to **Terraform**, which resolved reproducibility and became the foundation for the final Multi-AZ Fargate architecture.
 
 ---
 
