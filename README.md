@@ -60,9 +60,9 @@ then check Code Highlights below.
 ## CI/CD
 **CI/CD Flow:**
 
-Frontend: `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
+**Frontend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
 
-Backend: `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)`
+**Backend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)`
 
 **Container Entrypoint:**
 `Wait for DB` ➔ `Migrations` ➔ `Seeds` ➔ `App Ready`
