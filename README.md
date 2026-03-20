@@ -1,6 +1,6 @@
 # Allegro Profit & Margin Analytics – Cloud-Native Portfolio Project
 *Portfolio project demonstrating cloud-native development on AWS.*
-
+---
 ![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws)
 ![Terraform Version](https://img.shields.io/badge/Terraform-v1.14.7-7B42BC?logo=terraform)
 ![Docker Version](https://img.shields.io/badge/Docker-28.2.2-2496ED?logo=docker)
