@@ -44,6 +44,14 @@ then check Code Highlights below.
 
 ---
 
+## Local Development
+> Repository is private. Demo available in the video above.
+
+Core stack: Django + Celery workers + Redis (local), PostgreSQL + React.  
+Production environment runs on AWS - see Architecture section.
+
+---
+
 ## Code Highlights
 - [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
 `````terraform
@@ -70,10 +78,12 @@ done
 - [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
 ``````python
 # Safe to run on every container startup — create or update, never duplicate
-obj, created = AllegroCredentials.objects.get_or_create(id=1)
-obj.client_id = client_id
-obj.set_client_secret(client_secret) # Fernet-encrypted at model level
-obj.save()
+@transaction.atomic
+def handle(self, *args, **options):
+  obj, created = AllegroCredentials.objects.get_or_create(id=1)
+  obj.client_id = client_id
+  obj.set_client_secret(client_secret) # Fernet-encrypted at model level
+  obj.save()
 ``````
 
 
