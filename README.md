@@ -50,6 +50,7 @@ then check Code Highlights below.
 while ! python -c "socket check..."; do
     echo "Database is not ready..."; sleep 4
 done
+```
 - [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
 
 - [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
@@ -66,6 +67,7 @@ done
         obj.is_sandbox = is_sandbox_env
         obj.save()
 done
+```
 - [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption at the model level, not the application level
 - [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Validation before use - fail fast instead of a silent error
 
