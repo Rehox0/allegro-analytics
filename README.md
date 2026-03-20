@@ -44,6 +44,7 @@ then check Code Highlights below.
 
 ## Local Development
 > Repository is private. Demo available in the video above.
+*(Full setup guide available in private repo)*
 
 ---
 
