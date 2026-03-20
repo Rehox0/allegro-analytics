@@ -4,7 +4,7 @@
 # Responsibilities:
 # - Reads credentials from secrets_json
 # - Ensures a single credentials record exists
-# - Updates DB only when values change (idempotent)
+# - Updates DB at startup
 #
 # Used during container startup (entrypoint.sh)
 
