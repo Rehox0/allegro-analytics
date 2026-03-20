@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-# Production-style container entrypoint script
+# Container entrypoint script
 # Responsibilities:
 # - Wait for database readiness
 # - Run migrations

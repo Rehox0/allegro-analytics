@@ -1,4 +1,4 @@
-# Cloud-native Profit & Margin Analytics SaaS
+# Allegro Profit & Margin Analytics – Cloud-Native Portfolio Project
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws)
 ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?logo=terraform)
@@ -8,25 +8,25 @@
 ![Valkey](https://img.shields.io/badge/Valkey-5FBB97?logo=valkey&logoColor=white)
 
 ## Overview
-An app for Allegro sellers to track margins and profitability - integrates with the Allegro API (OAuth2 + PKCE), retrieves order data, and calculates profit after costs.
+Built with a business partner (accountant & Allegro seller) to track real per-order profit margins - including hidden operational costs that Allegro's dashboard doesn't show.
 
-The most challenging part was designing a reliable data ingestion flow using polling and asynchronous processing to emulate webhooks while ensuring idempotency and consistency.
+Integrates with Allegro API via OAuth2+PKCE, ingests order data asynchronously using Celery polling (webhook emulation), and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
 
-
-*Developed in collaboration with a stakeholder (professional accountant & Allegro seller) to reflect real-world use cases.*
-
+*Portfolio project demonstrating cloud-native development on AWS.*
 ---
 
 ## Live / Demo
-* **`90s: [▶link]`**
-* **`5-min deep-dive: [▶link]`**
+* **90s: [▶link]** - quick overview
+* **5-min deep-dive: [▶link]** - architecture walkthrough, terraform apply, UI, polling, CI/CD
 
+**Recommended:** Start with the 90s video, 
+then check Code Highlights below.
 ---
 
 ## Tech Stack
-* **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache.
-* **DevOps:** Terraform, Docker, GitHub Actions, Git.
-* **Backend:** Python (Django DRF), Celery, Redis, OAuth2 (PKCE).
+* **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache
+* **DevOps:** Terraform, Docker, GitHub Actions, Git
+* **Backend:** Python (Django DRF), Celery, Redis, OAuth2 (PKCE)
 * **Frontend:** React, Nginx, JavaScript
 
 ---
@@ -39,34 +39,32 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## Code Highlights
-- [entrypoint.sh](./Backend/entrypoint.sh) - Automated AWS migrations & startup
-- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent seeding with Secrets Manager
-- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - Dynamic secret management
-- [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption - model layer
-- [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Fernet encryption - service layer
+- [entrypoint.sh](./Backend/entrypoint.sh) - Ensures DB is ready, and then runs migrations
+- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
+- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
+- [OAuth2/models.py](./Backend/allegro_app/OAuth2/models.py) - Fernet encryption at the model level, not the application level
+- [OAuth2/services.py](./Backend/allegro_app/OAuth2/services.py) - Validation before use - fail fast instead of a silent error
 
 ---
 
 ## Key Features
-- Cloud-native architecture on AWS (ECS Fargate + CloudFront + private networking)
 - Infrastructure as Code using Terraform (~68 resources) divided into modules: Networking, Compute, Scaling, Security, and Observability
+- OAuth2 + PKCE login flow with Allegro
+- Idempotent data ingestion via polling
+- Per-order margin calculation with cost breakdown
 - Asynchronous processing with Celery workers
-- Secure secrets management (AWS Secrets Manager + Fernet encryption)
-- CI/CD pipeline using GitHub Actions
-- Multi-AZ high availability setup
+- Fernet-encrypted credential storage
 
 ---
 
 ## CI/CD
 **CI/CD Flow:**
-`GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `AWS ECS` ➔ `CloudFront Invalidation`
+Frontend: `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
+
+Backend: `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)`
 
 **Container Entrypoint:**
 `Wait for DB` ➔ `Migrations` ➔ `Seeds` ➔ `App Ready`
-
-**Includes:**
-* Image versioning
-* Automated deployments
 
 ---
 
@@ -88,9 +86,9 @@ The most challenging part was designing a reliable data ingestion flow using pol
 ---
 
 ## Design Evolution
-The project was developed iteratively, starting from a local environment and gradually migrating to `AWS`.
-
-The project evolved from local Docker-Compose to `Render`, eventually migrating to `AWS`. Initial EC2 deployments were refactored into a high-availability Fargate Multi-AZ architecture. This transition addressed real-world trade-offs between management overhead, cost optimization, and infrastructure resilience using Terraform.
+The project was developed iteratively. Evolved from local Docker-Compose to **Render**, eventually migrating to **AWS**. 
+Initial EC2 deployments were refactored into a high-availability Fargate Multi-AZ architecture. 
+This transition addressed real-world trade-offs between management overhead, cost optimization, and infrastructure resilience using Terraform.
 
 ---
 
