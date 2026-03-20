@@ -43,8 +43,8 @@ Then check Code Highlights below.
 - **Infrastructure as Code using Terraform (~68 resources)** divided into modules: Networking, Compute, Scaling, Security and Observability
 - **Target Tracking Scaling** for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
 - **Security Groups** enforce strict inbound/outbound rules between layers (`CloudFront` via `VPC Origin` → `ALB` → `ECS` → `RDS/ElastiCache`).
-- **ElastiCache** (Valkey) for caching layer, Redis for Celery broker
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access; outbound internet access for ECS routed via **NAT Gateway**
+- **ElastiCache** (Valkey) for caching layer, Redis for Celery broker
 
 ---
 
@@ -118,7 +118,6 @@ class AllegroCredentials(models.Model):
 ---
 
 ## CI/CD
-**CI/CD Flow:**
 
 **Frontend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
 
