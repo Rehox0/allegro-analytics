@@ -6,9 +6,9 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
 ![Python Version](https://img.shields.io/badge/Python-3.12-3776AB?logo=python)
 ![Valkey](https://img.shields.io/badge/Valkey-5FBB97?logo=valkey&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?logo=django)
-<image-card alt="React" src="https://img.shields.io/badge/React-61DAFB?logo=react" ></image-card>
-<image-card alt="Celery" src="https://img.shields.io/badge/Celery-37814A?logo=celery" ></image-card>
+![Django Version](https://img.shields.io/badge/Django-5.2.8-092E20?logo=django)
+![React Version](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
+![Celery Version](https://img.shields.io/badge/Celery-5.5.3-37814A?logo=celery)
 
 ## Overview
 Built with a business partner (accountant & Allegro seller) to track real per-order profit margins - including hidden operational costs(shipping returns, Allegro commissions, VAT adjustments) that Allegro's dashboard doesn't show.
