@@ -40,12 +40,13 @@ then check Code Highlights below.
 ## Architecture
 ![Architecture](./images/AWS_DIAGRAM2.png)
 
+CloudFront is the sole entry point — ALB and ECS tasks have no public access.  
+Multi-AZ deployment across two private subnets with ElastiCache replica and RDS Standby.
+
 ---
 
 ## Local Development
 > Repository is private. Demo available in the video above.
-
-*(Full setup guide available in private repo)*
 
 ---
 
