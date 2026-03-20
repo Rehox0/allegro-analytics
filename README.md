@@ -6,7 +6,7 @@
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
 ![Python Version](https://img.shields.io/badge/Python-3.12-3776AB?logo=python)
 ![Valkey](https://img.shields.io/badge/Valkey-5FBB97?logo=valkey&logoColor=white)
-<image-card alt="Django" src="https://img.shields.io/badge/Django-092E20?logo=django" ></image-card>
+![Django](https://img.shields.io/badge/Django-092E20?logo=django)
 <image-card alt="React" src="https://img.shields.io/badge/React-61DAFB?logo=react" ></image-card>
 <image-card alt="Celery" src="https://img.shields.io/badge/Celery-37814A?logo=celery" ></image-card>
 
