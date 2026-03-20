@@ -48,6 +48,17 @@ Then check Code Highlights below.
 
 ---
 
+## CI/CD
+
+**Frontend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
+
+**Backend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)`
+
+**Container Entrypoint:**
+`Wait for DB` ➔ `Migrations` ➔ `Seeding data` ➔ `App Ready`
+
+---
+
 ## Local Development
 > Repository is private. Demo available in the video above.
 
@@ -114,17 +125,6 @@ class AllegroCredentials(models.Model):
             raise ValueError("Allegro client_secret is missing. Update Allegro credentials in Django Admin.")
         return secret
 ``````
-
----
-
-## CI/CD
-
-**Frontend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)` ➔ `CloudFront Invalidation`
-
-**Backend:** `GitHub Actions` ➔ `Docker Build` ➔ `Amazon ECR` ➔ `ECS (versioned)`
-
-**Container Entrypoint:**
-`Wait for DB` ➔ `Migrations` ➔ `Seeding data` ➔ `App Ready`
 
 ---
 
