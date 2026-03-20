@@ -44,6 +44,7 @@ then check Code Highlights below.
 - **Target Tracking Scaling** for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access.
 - **Multi-AZ** deployment across two private subnets with ElastiCache replica and RDS Standby.
+- **ElastiCache** (Valkey) for caching layer, Redis for Celery broker
 
 ---
 
@@ -113,17 +114,6 @@ class AllegroCredentials(models.Model):
             raise ValueError("Allegro client_secret is missing. Update Allegro credentials in Django Admin.")
         return secret
 ``````
-
----
-
-## Key Features
-- Infrastructure as Code using Terraform (~68 resources) divided into modules: Networking, Compute, Scaling, Security, and Observability
-- OAuth2 + PKCE login flow with Allegro
-- ElastiCache (Valkey) for caching layer, Redis for Celery broker
-- Idempotent data ingestion via polling
-- Per-order margin calculation with cost breakdown
-- Asynchronous processing with Celery workers
-- Fernet-encrypted credential storage
 
 ---
 
