@@ -146,7 +146,7 @@ class AllegroCredentials(models.Model):
 ---
 
 ## Design Evolution
-Started as a learning project built for a business partner. Developed and iterated on **Render** for 3-4 months, then migrated to **AWS** after completing AWS certifications (CCP, DVA).
+Started as a learning project built for a business partner. Developed and iterated on **Render** for 4-5 months, then migrated to **AWS** after completing AWS certifications (CCP, DVA).
 
 Initial infrastructure was provisioned manually via AWS Console - after ~20 hours, complexity and configuration drift made it unmanageable. Rebuilt from scratch; the second iteration worked but remained hard to reproduce. This drove the migration to **Terraform**, which resolved reproducibility and became the foundation for the final Multi-AZ Fargate architecture.
 
