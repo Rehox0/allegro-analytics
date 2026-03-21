@@ -13,7 +13,7 @@
 ![Valkey](https://img.shields.io/badge/Valkey-5FBB97?logo=valkey&logoColor=white)
 
 ## Overview
-Built with a business partner (accountant & Allegro seller) to track real per-order profit margins - including hidden operational costs(shipping returns, Allegro commissions, VAT adjustments) that Allegro's dashboard doesn't show.
+Built with a business partner (accountant & Allegro seller) to track real per-order profit margins - including hidden operational costs (shipping returns, Allegro commissions, VAT adjustments) that Allegro's dashboard doesn't show.
 
 Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using Celery polling (webhook emulation), and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
 
