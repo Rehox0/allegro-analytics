@@ -26,7 +26,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 [Architecture walkthrough](url?t=0) ➔ [terraform apply](url?t=0) ➔ [OAuth2 PKCE flow](url?t=0) ➔ [UI](url?t=0) ➔ [polling](url?t=0) ➔ [CI/CD with cache invalidation](url?t=0)
 
 
-**Recommended:** Start with the <u>5-min deep-dive</u> video, or open your preferred <u>timestamp</u>
+**Recommended:** Start with the [5-min deep-dive](url?t=0) video, or open your preferred <ins>timestamp</ins>
 
 ---
 
