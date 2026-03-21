@@ -67,8 +67,8 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 ---
 
 ## Code Highlights
-- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - No hardcoded secrets; everything is generated dynamically
-`````terraform
+- [Secrets_Manager.tf](./Terraform/Secrets_Manager.tf) - All secrets are generated dynamically by Terraform; nothing is hardcoded or committed.
+```terraform
 resource "aws_secretsmanager_secret_version" "terraform_generated" {
   secret_id     = aws_secretsmanager_secret.terraform_generated.id
   secret_string = jsonencode(merge(
@@ -77,9 +77,9 @@ resource "aws_secretsmanager_secret_version" "terraform_generated" {
       # RDS credentials
       db_username = var.db_username
       db_password = random_password.db_password.result
-`````
+```
 
-- [entrypoint.sh](./Backend/entrypoint.sh) - DB readiness check without netcat or postgresql-client
+- [entrypoint.sh](./Backend/entrypoint.sh) - DB readiness check using only Python's stdlib; no netcat or postgresql-client needed in the container image.
 ```bash
 # Simplified
 while ! python -c "
@@ -90,22 +90,21 @@ while ! python -c "
 done
 ```
 
-- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding from Secrets Manager
-``````python
+- [setup_allegro_cred.py](./Backend/allegro_app/management/commands/setup_allegro_cred.py) - Idempotent credential seeding; safe to run on every container startup without duplicating records.
+```python
 # Simplified
-# Safe to run on every container startup - create or update, never duplicate
 @transaction.atomic
 def handle(self, *args, **options):
   obj, created = AllegroCredentials.objects.get_or_create(id=1)
   obj.client_id = client_id
   obj.set_client_secret(client_secret) # Fernet-encrypted at model level
   obj.save()
-``````
+```
 
 
 
-- **OAuth2/models.py** - Fernet encryption at the model level, not the application level
-``````python
+- **OAuth2/models.py** - Fernet encryption lives at the model level; the plaintext secret never reaches the application layer or logs.
+```python
 class AllegroCredentials(models.Model):
      encrypted_client_secret = models.CharField(max_length=512)
 
@@ -116,17 +115,17 @@ class AllegroCredentials(models.Model):
     def get_client_secret(self) -> str:
         """Decrypt and return the client secret."""
         return settings.FERNET.decrypt(self.encrypted_client_secret.encode()).decode()
-``````
+```
 
-- **OAuth2/services.py** - Validation before use - fail fast instead of a silent error
-``````python
+- **OAuth2/services.py** - Fail fast before any API call; misconfigured credentials surface immediately instead of causing silent failures downstream.
+```python
     @staticmethod
     def require_client_secret(creds: AllegroCredentials) -> str:
         secret = creds.get_client_secret().strip()
         if not secret:
             raise ValueError("Allegro client_secret is missing. Update Allegro credentials in Django Admin.")
         return secret
-``````
+```
 
 ---
 
