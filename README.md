@@ -50,7 +50,8 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 ---
 
 ## Local Development
-> Repository is private. Demo available in the video above.
+> Repository is private. Full setup documentation exists in private repository.
+  Demo available in the video above.
 
 ---
 
