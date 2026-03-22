@@ -34,7 +34,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 ## Tech Stack
 * **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache
 * **DevOps:** Terraform, Docker, GitHub Actions, Git
-* **Backend:** Python (Django DRF), Celery, Redis/Valkey, OAuth2 (PKCE)
+* **Backend:** Python (Django DRF), Celery, Valkey (ElastiCache on AWS, Redis locally), OAuth2 (PKCE)
 * **Frontend:** React, Nginx, JavaScript
 
 ---
@@ -102,7 +102,7 @@ def handle(self, *args, **options):
 - **OAuth2/models.py** - Fernet encryption lives at the model level; the plaintext secret never reaches the application layer or logs.
 ```python
 class AllegroCredentials(models.Model):
-     encrypted_client_secret = models.CharField(max_length=512)
+    encrypted_client_secret = models.CharField(max_length=512)
 
     def set_client_secret(self, secret: str) -> None:
         """Encrypt and store the client secret."""
