@@ -17,10 +17,10 @@ Built with a business partner (accountant & Allegro seller) to track real per-or
 
 Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using Celery polling (webhook emulation), and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
 
+> Repository is private. Demo available in the video below.
 ---
 
 ## Live / Demo
-> Repository is private. Full setup docs in private repo.
 
 * **[▶100s](https://youtu.be/V-9K6OLjeVw)**: Architecture summary ➔ UI ➔ CI/CD pipeline with cache invalidation
 * **[▶5-min deep-dive](https://youtu.be/W43Mq82sgeU)**:  
