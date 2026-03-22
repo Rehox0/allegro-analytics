@@ -20,6 +20,8 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 ---
 
 ## Live / Demo
+> Repository is private. Full setup docs in private repo.
+
 * **[▶100s](https://youtu.be/V-9K6OLjeVw)**: Architecture summary ➔ UI ➔ CI/CD pipeline with cache invalidation
 * **[▶5-min deep-dive](https://youtu.be/W43Mq82sgeU)**:  
   [Architecture walkthrough](https://youtu.be/W43Mq82sgeU?t=12) ➔ [terraform apply](https://youtu.be/W43Mq82sgeU?t=40) ➔ [OAuth2 PKCE flow](https://youtu.be/W43Mq82sgeU?t=101) ➔ [UI+features](https://youtu.be/W43Mq82sgeU?t=157) ➔ [polling+logs](https://youtu.be/W43Mq82sgeU?t=198) ➔ [CI/CD with cache invalidation](https://youtu.be/W43Mq82sgeU?t=243)
@@ -46,12 +48,6 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 - **Security Groups** enforce strict inbound/outbound rules between layers (`CloudFront` via `VPC Origin` → `ALB` → `ECS` → `RDS/ElastiCache`).
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access; outbound internet access for ECS routed via **NAT Gateway**
 - **ElastiCache** (Valkey) for caching layer, Redis for Celery broker
-
----
-
-## Local Development
-> Repository is private. Full setup documentation exists in private repository.
-  Demo available in the video above.
 
 ---
 
