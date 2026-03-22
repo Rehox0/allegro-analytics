@@ -34,7 +34,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 ## Tech Stack
 * **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache
 * **DevOps:** Terraform, Docker, GitHub Actions, Git
-* **Backend:** Python (Django DRF), Celery, Valkey (ElastiCache on AWS, Redis locally), OAuth2 (PKCE)
+* **Backend:** Python (Django DRF), Celery, Valkey, OAuth2 (PKCE)
 * **Frontend:** React, Nginx, JavaScript
 
 ---
@@ -47,7 +47,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 - **Target Tracking Scaling** for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
 - **Security Groups** enforce strict inbound/outbound rules between layers (`CloudFront` via `VPC Origin` → `ALB` → `ECS` → `RDS/ElastiCache`).
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access; outbound internet access for ECS routed via **NAT Gateway**
-- **ElastiCache** (Valkey) for caching layer, Redis for Celery broker
+- - **Target Tracking Scaling** for Frontend, Backend, and workers; ALB distributes traffic across tasks; CloudFront and ElastiCache reduce origin and database pressure.
 
 ---
 
@@ -122,14 +122,6 @@ class AllegroCredentials(models.Model):
             raise ValueError("Allegro client_secret is missing. Update Allegro credentials in Django Admin.")
         return secret
 ```
-
----
-
-## Scaling Strategy
-* ECS Service Auto Scaling (CPU / Memory based)
-* ALB distributes traffic across tasks
-* CloudFront reduces origin load
-* ElastiCache reduces database pressure
 
 ---
 
