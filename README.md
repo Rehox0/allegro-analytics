@@ -39,6 +39,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 
 ## Architecture
 ![Architecture](./images/AWS_DIAGRAM.png)
+<image-card alt="Architecture" src="images/AWS_DIAGRAM.png" ></image-card>
 
 - **Infrastructure as Code using Terraform (~68 resources)** - networking, compute, database, security, scaling, and observability.
 - **Remote state** stored in S3 with AES-256 encryption; single `terraform.tfstate` scoped to `eu-north-1`.
