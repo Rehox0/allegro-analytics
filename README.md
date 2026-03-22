@@ -44,10 +44,9 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 
 - **Infrastructure as Code using Terraform (~68 resources)** - networking, compute, database, security, scaling, and observability.
 - **Remote state** stored in S3 with AES-256 encryption; single `terraform.tfstate` scoped to `eu-north-1`.
-- **Target Tracking Scaling** for Frontend, Backend, and workers; poller runs as a single instance to avoid concurrent cursor reads on the same stream.
+- **Target Tracking Scaling** for Frontend, Backend, and workers; ALB distributes traffic across tasks; CloudFront and ElastiCache reduce origin and database pressure.
 - **Security Groups** enforce strict inbound/outbound rules between layers (`CloudFront` via `VPC Origin` → `ALB` → `ECS` → `RDS/ElastiCache`).
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access; outbound internet access for ECS routed via **NAT Gateway**
-- **Target Tracking Scaling** for Frontend, Backend, and workers; ALB distributes traffic across tasks; CloudFront and ElastiCache reduce origin and database pressure.
 
 ---
 
