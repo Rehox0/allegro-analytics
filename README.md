@@ -46,7 +46,7 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 - **Security Groups** enforce strict inbound/outbound rules between layers (`CloudFront` via `VPC Origin` → `ALB` → `ECS` → `RDS/ElastiCache`).
 - **CloudFront** is the sole entry point - ALB and ECS tasks have no public access; outbound internet access for ECS routed via **NAT Gateway**
 - **ElastiCache** (Valkey) for caching layer, Redis for Celery broker
-<image-card alt="Architecture" src="/Rehox0/allegro-analytics/blob/main/images/AWS_DIAGRAM.png" ></image-card>
+<image-card alt="Architecture" src="/Rehox0/allegro-analytics/blob/main/images/AWS_DIAGRAM.png"></image-card>
 
 ---
 
