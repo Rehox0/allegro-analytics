@@ -15,7 +15,7 @@
 ## Overview
 Built with a business partner (accountant with 10 years of experience & Allegro seller with ~800k PLN monthly turnover) to track real per-order profit margins - including hidden operational costs (shipping returns, Allegro commissions, VAT adjustments) that Allegro's dashboard doesn't show.
 
-Integrates with Allegro API, ingests data asynchronously using Celery polling, and calculates per-order profit after seller costs. Allegro API does not provide webhooks, so polling was implemented to emulate real-time order ingestion.
+Integrates with Allegro API, ingests data asynchronously via Celery polling (webhook emulation - Allegro API doesn't support webhooks), and calculates net profit per order after all seller costs.
 
 > Repository is private. Demo available in the video below.
 ---
