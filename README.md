@@ -143,10 +143,12 @@ Initial infrastructure was provisioned manually via AWS Console - after ~20 hour
 **High**
 * Add Run Migrations Task in CI/CD - current setup has a potential race condition when multiple tasks start simultaneously before migrations complete
 * Add DynamoDB state locking - currently no concurrent write protection on the S3 backend.
+
 **Medium**
 * Add unit tests - priority: margin calculation logic and Fernet encryption paths
 * Add SQS for async processing - currently using a custom database-backed queue (PostgreSQL) with idempotent enqueue, worker locking, retry backoff, and dead-letter semantics. SQS would offload queue pressure from the database and provide managed delivery guarantees at scale.
 * Add WAF for edge protection
+
 **Low**
 * Add distributed tracing (X-Ray)
 * Implement blue/green deployments
