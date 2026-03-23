@@ -23,11 +23,11 @@ Integrates with Allegro API, ingests data asynchronously via Celery polling (web
 ## Live / Demo
 
 * **[▶100s](https://youtu.be/V-9K6OLjeVw)**: Architecture summary ➔ UI ➔ CI/CD pipeline with cache invalidation
-* **[▶5-min deep-dive](https://youtu.be/W43Mq82sgeU)**:  
-  [Architecture walkthrough](https://youtu.be/W43Mq82sgeU?t=12) ➔ [terraform apply](https://youtu.be/W43Mq82sgeU?t=40) ➔ [OAuth2 PKCE flow](https://youtu.be/W43Mq82sgeU?t=101) ➔ [UI+features](https://youtu.be/W43Mq82sgeU?t=157) ➔ [polling+logs](https://youtu.be/W43Mq82sgeU?t=198) ➔ [CI/CD with cache invalidation](https://youtu.be/W43Mq82sgeU?t=243)
+* **[▶5-min deep-dive](https://youtu.be/xIzKutM0ifk)**:  
+  [Architecture walkthrough](https://youtu.be/xIzKutM0ifk?t=12) ➔ [terraform apply](https://youtu.be/xIzKutM0ifk?t=40) ➔ [OAuth2 PKCE flow](https://youtu.be/xIzKutM0ifk?t=101) ➔ [UI+features](https://youtu.be/xIzKutM0ifk?t=157) ➔ [polling+logs](https://youtu.be/xIzKutM0ifk?t=198) ➔ [CI/CD with cache invalidation](https://youtu.be/xIzKutM0ifk?t=243)
 
 
-**Recommended:** Start with the **[▶5-min deep-dive](https://youtu.be/W43Mq82sgeU)** video, or jump to a specific section above.
+**Recommended:** Start with the **[▶5-min deep-dive](https://youtu.be/xIzKutM0ifk)** video, or jump to a specific section above.
 
 ---
 
