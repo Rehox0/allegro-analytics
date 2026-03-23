@@ -32,9 +32,9 @@ Integrates with Allegro API via OAuth2+PKCE, ingests data asynchronously using C
 ---
 
 ## Tech Stack
-* **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache
+* **Cloud (AWS):** VPC, ECS Fargate, ECR, ALB, CloudFront (with VPC Origin), RDS (PostgreSQL), Secrets Manager, IAM, CloudWatch, NAT Gateway, VPC Endpoints, ElastiCache (Valkey)
 * **DevOps:** Terraform, Docker, GitHub Actions, Git
-* **Backend:** Python (Django DRF), Celery, Valkey, OAuth2 (PKCE)
+* **Backend:** Python (Django DRF), Celery, OAuth2 (PKCE)
 * **Frontend:** React, Nginx, JavaScript
 
 ---
