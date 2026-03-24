@@ -1,5 +1,8 @@
-# Allegro Profit & Margin Analytics
-**Portfolio project demonstrating cloud-native development on AWS.**
+<div align="center">
+  <h1># Allegro Profit & Margin Analytics</h1>
+  <p>**Portfolio project demonstrating cloud-native development on AWS.**</p>
+</div>
+
 
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws)
