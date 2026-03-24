@@ -1,6 +1,6 @@
 <div align="center">
-  <h1># Allegro Profit & Margin Analytics</h1>
-  <p>**Portfolio project demonstrating cloud-native development on AWS.**</p>
+  <h1>Allegro Profit & Margin Analytics</h1>
+  <p>Portfolio project demonstrating cloud-native development on AWS</p>
 </div>
 
 
