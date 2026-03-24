@@ -1,9 +1,6 @@
 <div align="center">
   <h1>Allegro Profit & Margin Analytics</h1>
   <p>Portfolio project demonstrating cloud-native development on AWS</p>
-</div>
-
-
 
 ![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws)
 ![Terraform Version](https://img.shields.io/badge/Terraform-v1.14.7-7B42BC?logo=terraform)
@@ -14,6 +11,8 @@
 ![React Version](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
 ![Celery Version](https://img.shields.io/badge/Celery-5.5.3-37814A?logo=celery)
 ![Valkey](https://img.shields.io/badge/Valkey-5FBB97?logo=valkey&logoColor=white)
+
+</div>
 
 ## Overview
 Built with a business partner (accountant with 10 years of experience & Allegro seller with ~800k PLN monthly turnover) to track real per-order profit margins - including hidden operational costs (shipping returns, Allegro commissions, VAT adjustments) that Allegro's dashboard doesn't show.
