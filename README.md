@@ -138,6 +138,8 @@ Initial infrastructure was provisioned manually via AWS Console - after ~20 hour
 **High**
 * Add Run Migrations Task in CI/CD - current setup has a potential race condition when multiple tasks start simultaneously before migrations complete
 * Add DynamoDB state locking - currently no concurrent write protection on the S3 backend.
+* Migrate RDS master password to `manage_master_user_password = true` - currently `random_password` result is stored in `tfstate` (S3/AES-256,
+IAM-restricted). Native AWS management would eliminate plaintext from state entirely and enable automatic rotation via Secrets Manager.
 
 **Medium**
 * Add unit tests - priority: margin calculation logic and Fernet encryption paths
