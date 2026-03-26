@@ -23,6 +23,15 @@ Integrates with Allegro API, ingests data asynchronously via Celery polling (web
 
 ---
 
+## Design Evolution
+Started as a learning project built for a business partner. Developed and iterated on **Render** for 4-5 months, then migrated to **AWS** after completing AWS certifications (CCP, DVA).
+
+Initial infrastructure was provisioned manually via AWS Console - after ~20 hours, complexity and configuration drift made it unmanageable. Rebuilt from scratch; the second iteration worked but remained hard to reproduce. This drove the migration to **Terraform**, which resolved reproducibility and became the foundation for the final Multi-AZ Fargate architecture.
+
+> **Planned:** Migrate from ECS Fargate to Kubernetes (EKS) - currently pursuing CKAD to deepen container orchestration knowledge before implementing.
+
+---
+
 ## Live / Demo
 
 * **[▶100s](https://youtu.be/V-9K6OLjeVw)**: Architecture summary ➔ UI ➔ CI/CD pipeline with cache invalidation
@@ -124,13 +133,6 @@ class AllegroCredentials(models.Model):
             raise ValueError("Allegro client_secret is missing. Update Allegro credentials in Django Admin.")
         return secret
 ```
-
----
-
-## Design Evolution
-Started as a learning project built for a business partner. Developed and iterated on **Render** for 4-5 months, then migrated to **AWS** after completing AWS certifications (CCP, DVA).
-
-Initial infrastructure was provisioned manually via AWS Console - after ~20 hours, complexity and configuration drift made it unmanageable. Rebuilt from scratch; the second iteration worked but remained hard to reproduce. This drove the migration to **Terraform**, which resolved reproducibility and became the foundation for the final Multi-AZ Fargate architecture.
 
 ---
 
