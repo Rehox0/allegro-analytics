@@ -132,8 +132,7 @@ Started as a learning project built for a business partner. Developed and iterat
 
 Initial infrastructure was provisioned manually via AWS Console - after ~20 hours, complexity and configuration drift made it unmanageable. Rebuilt from scratch; the second iteration worked but remained hard to reproduce. This drove the migration to **Terraform**, which resolved reproducibility and became the foundation for the final Multi-AZ Fargate architecture.
 
-> Pursuing CKAD to deepen container orchestration knowledge; 
-actively migrating to EKS — progress available in the [allegro-analytics-eks](https://github.com/Rehox0/allegro-analytics-eks).
+> Currently pursuing CKAD to deepen container orchestration knowledge; planning to migrate to Kubernetes (EKS) as a learning exercise.
 
 ---
 
