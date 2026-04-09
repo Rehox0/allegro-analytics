@@ -134,7 +134,7 @@ Initial infrastructure was provisioned manually via AWS Console - after ~20 hour
 
 > Pursuing CKAD to deepen container orchestration knowledge; 
 
-actively migrating to EKS — progress available in the **[allegro-analytics-eks]**(https://github.com/Rehox0/allegro-analytics-eks).
+> actively migrating to EKS — progress available in the **[allegro-analytics-eks](https://github.com/Rehox0/allegro-analytics-eks)**.
 
 ---
 
